@@ -1,0 +1,37 @@
+[
+{"name":"The canteen puzzle","seconds":52,"beats":[
+["title",""],
+["bill1","You're in the college canteen. Three friends order, and nobody remembers the prices. Bill one: one chai, one samosa, one maggi, forty-five rupees."],
+["bill2","Bill two: two chai, three samosa, one maggi, eighty-five."],
+["bill3","Bill three: one chai, two samosa, three maggi, one hundred. Can you find the price of each item?"],
+["swarm","You could guess and check, but what if there were ten items, or a thousand? Engineers solve systems with thousands of unknowns every day, and they use one method: Gaussian elimination. Let's see how it works, and more importantly, why it works."]]},
+{"name":"From bills to a matrix","seconds":67,"beats":[
+["variables","Let chai be x, samosa y, and maggi z. Our bills become three equations."],
+["pack","Writing x, y, z every time is wasteful, so we pack the numbers into an augmented matrix. Each row is one equation. The first three columns are the coefficients, and the last column, after the bar, is the right-hand side."],
+["stair","Gaussian elimination has one goal: use row operations to turn this into a staircase shape, called row-echelon form, where the bottom row has only one unknown. Then we solve from the bottom up."],
+["operations","We're only allowed three operations: swap two rows, multiply a row by a nonzero number, or add a multiple of one row to another."]]},
+{"name":"Why elimination works","seconds":75,"beats":[
+["planes","Here's the picture. Each equation is a plane in three-dimensional space. A solution must lie on all three planes at once, so the solution is where they meet. Here, that's a single point."],
+["tilt","Now what does a row operation do? Replacing an equation with 'itself minus twice another' gives us a new plane, tilted differently. But watch: the meeting point hasn't moved."],
+["undo","Every point that satisfied both old equations satisfies the new one, and the operation is reversible, so we can always undo it. That's the key reason row operations preserve the solution set."],
+["simpler","So elimination is just tilting planes, one at a time, until the system is so simple we can read off the answer."]]},
+{"name":"Forward elimination","seconds":70,"beats":[
+["pivot","Our matrix is this. Step one. The pivot is the one in the top-left. We use it to clear the column below it."],
+["row2","Row two becomes row two minus two times row one: two, three, one, eighty-five, minus two, two, two, ninety, gives zero, one, minus one, minus five."],
+["row3","Row three becomes row three minus row one: one, two, three, one hundred, minus one, one, one, forty-five, gives zero, one, two, fifty-five."],
+["pivot2","Step two. The next pivot is the one in row two, column two. Clear below it."],
+["rowfinal","Row three becomes row three minus row two: zero, one, two, fifty-five, minus zero, one, minus one, minus five, gives zero, zero, three, sixty. Now we have a staircase."]]},
+{"name":"Back-substitution and check","seconds":55,"beats":[
+["solvez","The last row says three z equals sixty, so z equals twenty."],
+["solvey","Back-substitution. Row two says y minus z equals minus five, so y equals minus five plus twenty, which is fifteen."],
+["solvex","Row one says x plus y plus z equals forty-five, so x equals forty-five minus fifteen minus twenty, which is ten."],
+["prices","Chai is ten rupees, samosa fifteen, maggi twenty."],
+["checks","Always check: ten plus fifteen plus twenty is forty-five. Twenty plus forty-five plus twenty is eighty-five. Ten plus thirty plus sixty is one hundred. All three bills match."]]},
+{"name":"Interpretation, recap and credits","seconds":90,"beats":[
+["unique","Let's connect this back to geometry. Three pivots, one in each column, means three planes crossing at exactly one point: a unique solution."],
+["none","But elimination also tells us when something goes wrong. If we ever get a row like zero, zero, zero, five, that says zero equals five. Impossible, so the planes never meet at a common point and there's no solution."],
+["free","If we end with a row of all zeros, we've lost an equation, one variable is free, and there are infinitely many solutions."],
+["swap","And if a pivot position happens to hold a zero? Just swap rows. That's why swapping is allowed."],
+["recap","Three things to remember. One: a system of equations can be written as an augmented matrix. Two: row operations are reversible, so they never change the solution. Geometrically, they tilt the planes but keep their meeting point fixed. Three: eliminate downward to get a staircase, then back-substitute upward. Thanks for watching."],
+["credits",""]]}
+]
